@@ -1,0 +1,127 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   LİSEM MARKASI — oyunların ortak renkleri ve yazı tipleri (sürüm 1).
+
+   Oyun bu dosyayı MUTLAK yoldan bağlar:
+     <link rel="stylesheet" href="/marka/1/marka.css">
+   Sürüm klasörü DEĞİŞMEZ (kilit.json): yayındaki bir oyunun görünüşü bu
+   dosya yüzünden bir gün kendiliğinden değişmesin. Yeni renk ya da yazı
+   tipi gerekirse `/marka/2/` açılır, eski oyunlar 1'de kalır.
+
+   1) @parity BEGIN … END arası lisem-web'in `styles/tokens.css`indeki
+      AYNI ADLI değişkenlerle BİREBİR aynıdır (oradaki renkler de
+      lisem-app'in kopyası).
+      Renk İCAT EDİLMEZ. `npm run check`, lisem-web klonu yan yanaysa
+      (../lisemweb) bunu sınar.
+   2) Bloğun dışı oyunlara özel: yazı tipi aileleri (lisem-web'de next/font
+      doldurur, burada dosyadan gelir).
+
+   Tuval (canvas) oyunu renkleri JavaScript'ten okur:
+     LisemOyun.renk('--color-accent')   // '#5b8def'
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fontlar/inter-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url('fontlar/inter-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('fontlar/inter-latin-600-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Inter'; font-style: normal; font-weight: 600; font-display: swap;
+  src: url('fontlar/inter-latin-ext-600-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* Baloo 2 yalnızca 700 dosyası var; sitenin başlık ağırlığı (800) da bu
+   dosyadan çizilsin, tarayıcı sahte kalınlık üretmesin diye aralık. */
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 700 800; font-display: swap;
+  src: url('fontlar/baloo-2-latin-700-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 700 800; font-display: swap;
+  src: url('fontlar/baloo-2-latin-ext-700-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+:root {
+  /* ═══════════ @parity BEGIN ═══════════════════════════════════════════ */
+
+  /* — zemin ve metin — */
+  --color-bg: #ffffff;
+  --color-text: #1f2430;
+  --color-danger: #b3261e;
+
+  /* — nötr rampa — */
+  --color-neutral-100: #f8f4f4;
+  --color-neutral-200: #eae7e7;
+  --color-neutral-300: #d7d3d3;
+  --color-neutral-400: #bab6b6;
+  --color-neutral-500: #9b9797;
+  --color-neutral-600: #7d7979;
+  --color-neutral-700: #605d5d;
+  --color-neutral-800: #444141;
+  --color-neutral-900: #2d2b2b;
+
+  /* — marka mavisi — */
+  --color-accent: #5b8def;
+  --color-accent-100: #eef4fe;
+  --color-accent-200: #dce8fd;
+  --color-accent-300: #c2d8fb;
+  --color-accent-400: #92b6f4;
+  --color-accent-500: #5b8def;
+  --color-accent-600: #3f71d6;
+  --color-accent-700: #2a4fa8;
+  --color-accent-800: #1e3a80;
+  --color-accent-900: #152a5e;
+
+  /* — marka pembesi — */
+  --color-accent-2: #ec7ba8;
+  --color-accent-2-100: #fdeff5;
+  --color-accent-2-200: #fbdde9;
+  --color-accent-2-300: #f9c4d8;
+  --color-accent-2-400: #f29cbf;
+  --color-accent-2-500: #ec7ba8;
+  --color-accent-2-600: #d45a8b;
+  --color-accent-2-700: #9c2e60;
+  --color-accent-2-800: #7b2049;
+  --color-accent-2-900: #591536;
+
+  /* — kategori pastelleri (dolgu) — turuncu yok — */
+  --p-blue: #a9cbfa;
+  --p-pink: #f9b8d0;
+  --p-purple: #c9b8f5;
+  --p-mint: #a8e6d4;
+  --p-green: #cde7b0;
+  --p-green-soft: #e4f2d4;
+  --p-amber: #f7dfb0;
+
+  /* — mürekkep adımları (pastel üzerinde küçük metin/aksan) — */
+  --i-blue: #1b3e8f;
+  --i-pink: #9c2e60;
+  --i-purple: #4b2c91;
+  --i-mint: #17594a;
+  --i-green: #3d6b1f;
+  --i-amber: #7a4e00;
+
+  --font-heading-weight: 800;
+
+  /* — köşeler — */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  /* — yükseklik — */
+  --shadow-sm: 0 4px 12px rgba(31, 36, 48, 0.07);
+  --shadow-md: 0 8px 20px rgba(31, 36, 48, 0.09);
+  --shadow-lg: 0 16px 36px rgba(31, 36, 48, 0.13);
+
+  --on-pastel: #1f2430;
+
+  /* — sitenin zemini (lisem-web'de bloğun DIŞINDA ama adıyla aynı) — */
+  --page-bg: #faf8f3;
+  --page-bg-warm: #f4f1ea;
+  --footer-bg: #131826;
+
+  /* ═══════════ @parity END ═════════════════════════════════════════════ */
+
+  /* — yalnızca oyunlar — */
+  --font-heading: 'Baloo 2', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}

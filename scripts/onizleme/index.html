@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lisem Oyun · yerel önizleme</title>
+  <link rel="stylesheet" href="onizleme.css">
+</head>
+<body>
+  <header class="ust">
+    <div class="marka">
+      <strong>Lisem Oyun</strong>
+      <span>yerel önizleme — lisem.com.tr'deki oynatıcının taklidi</span>
+    </div>
+    <label class="secim">
+      <span>Oyun</span>
+      <select id="oyun"></select>
+    </label>
+    <div class="dugmeler" role="group" aria-label="Sahne">
+      <button type="button" data-sahne="masaustu">Masaüstü</button>
+      <button type="button" data-sahne="telefon-dikey">Telefon dikey</button>
+      <button type="button" data-sahne="telefon-yatay">Telefon yatay</button>
+    </div>
+    <div class="dugmeler">
+      <button type="button" id="yeniden">Yeniden başlat</button>
+      <button type="button" id="tam-ekran">Tam ekran</button>
+    </div>
+  </header>
+
+  <main class="duzen">
+    <section class="sahne-kutusu">
+      <div class="sahne" id="sahne"></div>
+    </section>
+
+    <aside class="panel">
+      <h2>Sözleşme</h2>
+      <dl>
+        <dt>“hazır” mesajı</dt>
+        <dd id="hazir" data-durum="bekliyor">bekleniyor…</dd>
+        <dt>Son skor</dt>
+        <dd id="skor">—</dd>
+        <dt>En iyi (bu oturum)</dt>
+        <dd id="en-iyi">—</dd>
+        <dt>Sayfa kaydırması</dt>
+        <dd id="kaydirma" data-durum="tamam">yok</dd>
+      </dl>
+      <h2>Mesajlar</h2>
+      <ol id="gunluk" class="gunluk"></ol>
+      <p class="not">
+        Oyun <code>sandbox="allow-scripts"</code> çerçevede, ayrı bir kökende
+        (<code>127.0.0.1</code>) ve oyun sunucusunun üretim başlıklarıyla
+        çalışıyor. Burada çalışan oyun lisem.com.tr'de de çalışır.
+        Sayfa bilerek uzun: oyunda boşluğa ya da oklara basınca bu sayfa
+        KAYMAMALI.
+      </p>
+    </aside>
+  </main>
+
+  <div class="bosluk" aria-hidden="true"></div>
+  <script src="onizleme.js"></script>
+</body>
+</html>

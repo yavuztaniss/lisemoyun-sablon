@@ -1,0 +1,16 @@
+name: Denetim
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  denetim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Bağımlılık yok: kurulum adımı gerekmiyor.
+      - run: npm run check

@@ -1,0 +1,7 @@
+{
+  "aciklama": "Lisem'in ortak dosyalarının (/sdk, /marka) özeti. Bu klasörlere dokunulmaz: sitede senin kopyan değil Lisem'inki kullanılır.",
+  "kilitli": {
+    "marka/1/": "sha256-1ac07875dc094a010b4e968e2931d4282a5b239cdf20845d7a77609acb837f6d",
+    "sdk/1/": "sha256-be32d686d4c52620f28c529e89c7b64c4064c6ad622a4f5fa2dbe83852fef40c"
+  }
+}

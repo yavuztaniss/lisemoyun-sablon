@@ -1,0 +1,29 @@
+{
+  "aciklama": "Lisem'in oyun sunucusunun gönderdiği başlıklar (lisemoyun › vercel.json). npm run dev bunları gönderir: yerelde çalışan oyun sitede de çalışır.",
+  "basliklar": [
+    {
+      "key": "Content-Security-Policy",
+      "value": "sandbox allow-scripts; default-src 'self'; img-src 'self' data: blob:; media-src 'self' data: blob:; form-action 'none'; frame-ancestors https://lisem.com.tr https://www.lisem.com.tr"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Cross-Origin-Resource-Policy",
+      "value": "cross-origin"
+    },
+    {
+      "key": "X-Content-Type-Options",
+      "value": "nosniff"
+    },
+    {
+      "key": "Referrer-Policy",
+      "value": "no-referrer"
+    },
+    {
+      "key": "X-Robots-Tag",
+      "value": "noindex"
+    }
+  ]
+}

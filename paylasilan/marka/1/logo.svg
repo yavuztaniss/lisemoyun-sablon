@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="180 40 160 140" width="160" height="140" role="img" aria-label="Lisem">
+  <!-- lisem-web components/brand/logo.tsx ile AYNI geometri. Değiştirilmez. -->
+  <rect x="206" y="56" width="108" height="108" rx="30" fill="#F9B8D0" transform="rotate(-10 260 110)"/>
+  <rect x="200" y="50" width="120" height="120" rx="34" fill="#A9CBFA" transform="rotate(6 260 110)"/>
+  <path d="M260,68 L270.6,95.4 L299.9,97.0 L277.1,115.6 L284.7,144.0 L260,128 L235.3,144.0 L242.9,115.6 L220.1,97.0 L249.4,95.4 Z" fill="#FFFFFF"/>
+</svg>

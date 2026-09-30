@@ -1,0 +1,15 @@
+{
+  "name": "lisem-oyun-sablon",
+  "private": true,
+  "description": "Lisem Oyun'a (lisem.com.tr/oyun) oyun yapmak için şablon.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "yeni": "node scripts/yeni.mjs",
+    "dev": "node scripts/dev.mjs",
+    "check": "node scripts/check.mjs",
+    "dene": "node scripts/dene.mjs"
+  }
+}

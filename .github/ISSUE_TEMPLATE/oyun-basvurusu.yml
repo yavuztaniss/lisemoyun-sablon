@@ -1,0 +1,69 @@
+name: Oyun başvurusu
+description: Oyununu lisem.com.tr/oyun'da yayımlanmak üzere gönder.
+title: "Başvuru: <oyunun adı>"
+labels: ["başvuru"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Bu başvuru herkese açık görünür.** Telefon, e-posta, okul gibi kişisel bilgi yazma.
+        Lisem kullanıcı adını buraya değil, deponda `oyun.json`daki `gelistirici` alanına yaz.
+
+  - type: input
+    id: oyun
+    attributes:
+      label: Oyunun adı
+      placeholder: Kelime Avı
+    validations:
+      required: true
+
+  - type: input
+    id: depo
+    attributes:
+      label: Deponun bağlantısı
+      description: Oyunun bu şablondan açtığın kendi deponda. Gizli depoysa `yavuztaniss` hesabını ortak çalışan (collaborator) olarak ekle.
+      placeholder: https://github.com/kullanici-adin/kelime-avi
+    validations:
+      required: true
+
+  - type: input
+    id: klasor
+    attributes:
+      label: Oyunun klasörü
+      placeholder: oyunlar/kelime-avi/1/
+    validations:
+      required: true
+
+  - type: dropdown
+    id: gorunurluk
+    attributes:
+      label: Depon
+      options:
+        - Açık
+        - Gizli — yavuztaniss'i ortak çalışan olarak ekledim
+    validations:
+      required: true
+
+  - type: textarea
+    id: aciklama
+    attributes:
+      label: Oyunu kısaca anlat
+      description: Nasıl oynanıyor, neden yaptın? Hazır bir kütüphane kullandıysan adını ve lisansını yaz.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: onay
+    attributes:
+      label: Onaylar
+      options:
+        - label: Kuralları (README ve CLAUDE.md) okudum; `npm run check` temiz.
+          required: true
+        - label: Oyun telefonda da oynanıyor (önizlemede telefon ölçülerinde denedim).
+          required: true
+        - label: Oyun bana (ya da ekibime) ait; izinsiz görsel, ses, kod ya da başka bir markanın adı/karakteri yok.
+          required: true
+        - label: Oyun kişisel veri istemiyor; reklam, sohbet, skor tablosu, satın alma yok; içerik okul ortamına uygun.
+          required: true
+        - label: Lisem'in bu oyunu lisem.com.tr'de yayımlamasına izin veriyorum; istediğimde kaldırılmasını isteyebilirim.
+          required: true

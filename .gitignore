@@ -1,0 +1,4 @@
+node_modules/
+.dene/
+dist/
+.DS_Store
