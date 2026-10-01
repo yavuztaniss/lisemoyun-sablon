@@ -184,6 +184,7 @@ const JS_YASAKLARI = [
   [/\bnew\s+Function\s*\(/, "new Function — CSP 'unsafe-eval' vermiyor"],
   [/\bSharedArrayBuffer\b/, 'SharedArrayBuffer — çok iş parçacıklı çıktı V1\'de yok'],
   [/\bserviceWorker\b/, 'service worker — kısıtlı çerçevede kaydedilemez'],
+  [/\bnew\s+(Shared)?Worker\s*\(/, "Worker — kısıtlı çerçevede açılmaz: dosyadan SecurityError, blob:/data: adresini CSP reddeder (hata fırlatmaz, yalnızca onerror gelir; oyun takılır). İşi ana iş parçacığında, karelere bölerek yap"],
   [/\bfetch\s*\(\s*['"`]https?:/, 'dış adrese fetch — CSP default-src \'self\' engeller'],
 ];
 
@@ -196,9 +197,6 @@ function jsDenetle(yer, kod, hata, uyari) {
   for (const adres of adresler) {
     if (adres.startsWith('http://www.w3.org/')) continue;
     hata(yer, `dış adres "${adres}" — oyun dışarıya istek atamaz (CSP default-src 'self'); dosyayı klasöre koy`);
-  }
-  if (/new\s+Worker\s*\(\s*['"`]/.test(temiz)) {
-    uyari(yer, "dosyadan Worker açılmaz (kısıtlı çerçeve); blob: adresli worker kullan");
   }
   if (/postMessage\s*\([^;]*,\s*['"`](?!\*['"`])/.test(temiz)) {
     uyari(yer, "postMessage hedef kökeni '*' olmalı — oyun 'null' kökenle çalışır, somut köken yazılırsa mesaj kaybolur");

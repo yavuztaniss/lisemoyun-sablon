@@ -28,7 +28,11 @@ Kaynak: Lisem'in özel oyun deposu (`lisemoyun`). Bu dosya oradaki
    - Satır içi `<script>`, `<style>`, `style="…"`, `onclick="…"`, `eval` ve
      `new Function` ÇALIŞMAZ. Kod `.js` dosyasına, stil `.css` dosyasına
      yazılır.
-   - `new Worker('dosya.js')` açılmaz; `blob:` worker açılır.
+   - Worker AÇILMAZ, dosyadan da `blob:`dan da: `new Worker('dosya.js')`
+     `SecurityError` verir, `blob:` ve `data:` worker'ı sunucunun güvenlik
+     başlığı (CSP) reddeder. Ret hata fırlatmaz, yalnızca `onerror` gelir;
+     oyun beklerken takılır. `SharedWorker` da yok. Oyun tek iş parçacığında
+     çalışır; ağır iş karelere bölünür.
    - `SharedArrayBuffer` ve çok iş parçacıklı dışa aktarımlar (Godot 4,
      Unity) yok. Tek iş parçacıklı dışa aktarım kullanılır.
 
