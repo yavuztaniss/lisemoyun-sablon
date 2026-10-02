@@ -14,8 +14,9 @@ Kaynak: Lisem'in özel oyun deposu (`lisemoyun`). Bu dosya oradaki
 ## Kurallar
 
 1. **Oyun kısıtlı çerçevede, AYRI kökende çalışır** (`sandbox="allow-scripts"`
-   + sunucunun `Content-Security-Policy: sandbox allow-scripts; default-src 'self'`
-   başlığı). Oyun "null" kökenle çalışır. Bunun sonuçları:
+   + sunucunun `Content-Security-Policy: sandbox allow-scripts; default-src 'self';
+   script-src 'self' 'wasm-unsafe-eval'` başlığı). Oyun "null" kökenle
+   çalışır. Bunun sonuçları:
 
    - `localStorage`, `sessionStorage`, IndexedDB ve `document.cookie`e
      **okumak bile** `SecurityError` fırlatır. Skoru localStorage'a yazan
@@ -28,6 +29,9 @@ Kaynak: Lisem'in özel oyun deposu (`lisemoyun`). Bu dosya oradaki
    - Satır içi `<script>`, `<style>`, `style="…"`, `onclick="…"`, `eval` ve
      `new Function` ÇALIŞMAZ. Kod `.js` dosyasına, stil `.css` dosyasına
      yazılır.
+   - WebAssembly ÇALIŞIR: `WebAssembly.instantiate`, `instantiateStreaming`
+     ve `new WebAssembly.Module`. `.wasm` dosyası oyunun klasöründe durur.
+     Bu izin yalnızca wasm içindir; `eval` ve `new Function` yine kapalı.
    - Worker AÇILMAZ, dosyadan da `blob:`dan da: `new Worker('dosya.js')`
      `SecurityError` verir, `blob:` ve `data:` worker'ı sunucunun güvenlik
      başlığı (CSP) reddeder. Ret hata fırlatmaz, yalnızca `onerror` gelir;

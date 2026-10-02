@@ -341,6 +341,16 @@ function sunucuDenetle(hata) {
   const atalar = parcalar.find((p) => p.startsWith('frame-ancestors '));
   if (!atalar || !atalar.includes('https://lisem.com.tr')) hata('vercel.json', 'frame-ancestors https://lisem.com.tr içermeli');
   if (!parcalar.some((p) => p.startsWith("default-src 'self'"))) hata('vercel.json', "CSP default-src 'self' olmalı");
+  for (const p of parcalar) {
+    const gevsek = p.match(/'unsafe-(eval|inline|hashes)'/);
+    if (gevsek) hata('vercel.json', `CSP ${p.split(/\s+/)[0]} ${gevsek[0]} içeriyor — JS eval / satır içi betik açılır`);
+  }
+  // `.wasm` izinli tür: 'wasm-unsafe-eval' yoksa wasm denetimden geçer ama
+  // yayında derlenmez (ölçüldü). İzin YALNIZCA wasm içindir; JS eval kapalı kalır.
+  const betik = parcalar.find((p) => p.startsWith('script-src '))?.split(/\s+/).slice(1).sort().join(' ');
+  if (betik !== "'self' 'wasm-unsafe-eval'") {
+    hata('vercel.json', "CSP script-src tam olarak 'self' 'wasm-unsafe-eval' olmalı — eksikse .wasm yayında derlenmez (ölçüldü), fazlası kalkanı deler");
+  }
   if (b.get('access-control-allow-origin') !== '*') {
     hata('vercel.json', 'Access-Control-Allow-Origin: * olmalı — kısıtlı çerçevede yazı tipi, modül ve fetch bunsuz yüklenmez');
   }

@@ -11,7 +11,8 @@
  *   • boşluk / oklar / PageDown SAYFAYI kaydırıyor mu
  *   • birkaç saniye oynanınca bir skor mesajı geliyor mu (bilgi)
  *   • telefon dikey ve yatay ölçüde açılıyor mu
- *   • adres DOĞRUDAN açılınca (çerçevesiz) hata veriyor mu
+ *   • adres DOĞRUDAN açılınca (çerçevesiz) hata veriyor mu, WebAssembly
+ *     derleniyor mu (sunucu başlıkları)
  *
  * Ekran görüntüleri `.dene/<oyun>-<sürüm>-*.png`. `--kapak`: oyunu
  * `?kapak` ile 1600 × 1000 açıp `oyunlar/<oyun>/kapak.jpg`i yazar (oyun
@@ -146,6 +147,17 @@ for (const h of hedefler) {
   await ds.waitForTimeout(1500);
   const koken = await ds.evaluate(() => self.origin);
   sonuc('doğrudan açılınca köken "null" (CSP sandbox başlığı)', koken === 'null', koken);
+  // `.wasm` izinli tür: sunucu başlıkları (script-src 'wasm-unsafe-eval')
+  // derlemeye izin vermeli. Küçük bir modül: add(a, b).
+  const wasm = await ds.evaluate(async () => {
+    const bayt = [0, 97, 115, 109, 1, 0, 0, 0, 1, 7, 1, 96, 2, 127, 127, 1, 127, 3, 2, 1, 0, 7, 7, 1, 3, 97, 100, 100, 0, 0, 10, 9, 1, 7, 0, 32, 0, 32, 1, 106, 11];
+    try {
+      return String((await WebAssembly.instantiate(new Uint8Array(bayt))).instance.exports.add(2, 3));
+    } catch (e) {
+      return `${e.name}: ${e.message}`;
+    }
+  });
+  sonuc("WebAssembly derleniyor (CSP 'wasm-unsafe-eval')", wasm === '5', wasm === '5' ? '' : wasm.slice(0, 160));
   sonuc('doğrudan açılınca hata yok', dHatalar.length === 0, dHatalar.slice(0, 3).join(' | '));
   await dogrudan.close();
 
